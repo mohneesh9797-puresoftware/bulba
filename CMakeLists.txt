@@ -39,7 +39,9 @@ target_include_directories(bulba-objects
 )
 target_compile_definitions(bulba-objects
     PRIVATE
-        $<$<BOOL:"${BUILD_SHARED_LIBS}">:$<TARGET_PROPERTY:DEFINE_SYMBOL>>
+        $<$<BOOL:${BUILD_SHARED_LIBS}>:$<TARGET_PROPERTY:DEFINE_SYMBOL>>
+    PUBLIC
+        $<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:POTATO_BULBA_STATIC_DEFINE>
 )
 target_link_libraries(bulba-objects
     PRIVATE
